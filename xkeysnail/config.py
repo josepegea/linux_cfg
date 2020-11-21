@@ -29,6 +29,21 @@ define_keymap(None, {
     K("LM-BACKSLASH"): K("RM-BACKSLASH")
 }, "AltChars")
 
+define_keymap(lambda wm_class: wm_class.casefold() not in managed_apps, {
+    K("Super-RIGHT"): K("END"),
+    K("Super-LEFT"): K("HOME"),
+    K("Super-Shift-RIGHT"): K("Shift-END"),
+    K("Super-Shift-LEFT"): K("Shift-HOME"),
+    K("Super-DOWN"): K("C-END"),
+    K("Super-UP"): K("C-HOME"),
+    K("Super-Shift-DOWN"): K("Shift-C-END"),
+    K("Super-Shift-UP"): K("Shift-C-HOME"),
+    K("M-LEFT"): K("C-LEFT"),
+    K("M-RIGHT"): K("C-RIGHT"),
+    K("M-Shift-LEFT"): K("C-Shift-LEFT"),
+    K("M-Shift-RIGHT"): K("C-Shift-RIGHT")
+}, "Cursor")
+
 define_keymap(lambda wm_class: wm_class.casefold() not in managed_apps,{
     K("Super-C"): K("C-C"),
     K("Super-V"): K("C-V"),
@@ -49,6 +64,7 @@ define_keymap(lambda wm_class: wm_class.casefold() not in managed_apps,{
     K("Super-Shift-N"): K("C-Shift-N"),
     K("Super-O"): K("C-O"),
     K("Super-P"): K("C-P"),
+    K("Super-W"): K("C-W"),
     K("Super-Q"): K("C-Q"),
 
     K("Super-B"): K("C-B"), # Bold
@@ -104,6 +120,24 @@ define_keymap(re.compile("terminal", re.IGNORECASE),{
     K("Super-KEY_6"): K("M-KEY_6"),
     K("Super-KEY_7"): K("M-KEY_7"),
     K("Super-KEY_8"): K("M-KEY_8"),
-    K("Super-KEY_9"): K("M-KEY_9")
+    K("Super-KEY_9"): K("M-KEY_9"),
+
+    K("Super-M-LEFT"): K("C-PAGE_UP"),    # Tab left
+    K("Super-M-RIGHT"): K("C-PAGE_DOWN"),  # Tab right
+
+    K("Super-RIGHT"): K("END"),
+    K("Super-LEFT"): K("HOME")
+
 }, 'Terminal')
+
+define_keymap(re.compile("firefox", re.IGNORECASE),{
+    K("Super-Shift-I"): K("C-Shift-I"),   # Inspect
+    K("Super-M-LEFT"): K("C-PAGE_UP"),    # Tab left
+    K("Super-M-RIGHT"): K("C-PAGE_DOWN")  # Tab right
+}, 'Firefox')
+
+define_keymap(re.compile("caja", re.IGNORECASE),{
+    K("Super-M-LEFT"): K("C-PAGE_UP"),    # Tab left
+    K("Super-M-RIGHT"): K("C-PAGE_DOWN")  # Tab right
+}, 'Caja')
 
