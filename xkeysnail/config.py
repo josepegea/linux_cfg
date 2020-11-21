@@ -18,6 +18,16 @@ define_keymap(None, {
     }
 }, "Apptivator")
 
+define_keymap(None, {
+    K("LM-GRAVE"): K("RM-GRAVE"),
+    K("LM-KEY_1"): K("RM-KEY_1"),
+    K("LM-KEY_2"): K("RM-KEY_2"),
+    K("LM-KEY_3"): K("RM-KEY_3"),
+    K("LM-LEFT_BRACE"): K("RM-LEFT_BRACE"),
+    K("LM-RIGHT_BRACE"): K("RM-RIGHT_BRACE"),
+    K("LM-APOSTROPHE"): K("RM-APOSTROPHE"),
+    K("LM-BACKSLASH"): K("RM-BACKSLASH")
+}, "AltChars")
 
 define_keymap(lambda wm_class: wm_class.casefold() not in managed_apps,{
     K("Super-C"): K("C-C"),
