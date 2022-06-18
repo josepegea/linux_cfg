@@ -14,6 +14,8 @@ define_keymap(None, {
         K("F"): sup.find_or_launch(["firefox"]),
         K("S"): sup.find_or_launch(["mate-terminal"]),
         K("N"): sup.find_or_launch(["caja"]),
+        K("K"): sup.find_or_launch(["slack"]),
+        K("M"): sup.find_or_launch(["evolution"]),
         K("Q"): sup.find_or_launch(["emacs"])
     }
 }, "Apptivator")
