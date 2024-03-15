@@ -11,12 +11,18 @@ managed_apps = ['emacs','mate-terminal']
 
 define_keymap(None, {
     K("Super-C-M-Space"): {
-        K("F"): sup.find_or_launch(["firefox"]),
-        K("S"): sup.find_or_launch(["mate-terminal"]),
-        K("N"): sup.find_or_launch(["caja"]),
-        K("K"): sup.find_or_launch(["slack"]),
-        K("M"): sup.find_or_launch(["evolution"]),
-        K("Q"): sup.find_or_launch(["emacs"])
+        K("F"): sup.find_or_launch("firefox"),
+        K("S"): sup.find_or_launch("mate-terminal"),
+        K("N"): sup.find_or_launch("caja"),
+        K("K"): sup.find_or_launch("slack"),
+        K("M"): sup.find_or_launch("evolution"),
+        K("U"): sup.find_or_launch("whatsapp"),
+        K("R"): sup.find_or_launch("jira"),
+        K("C"): sup.find_or_launch("chrome"),
+        K("I"): sup.find_or_launch("youtube"),
+        K("P"): sup.find_or_launch("dbeaver"),
+        K("D"): sup.find_or_launch("calendar"),
+        K("Q"): sup.find_or_launch("emacs")
     }
 }, "Apptivator")
 
@@ -133,13 +139,20 @@ define_keymap(re.compile("terminal", re.IGNORECASE),{
 }, 'Terminal')
 
 define_keymap(re.compile("firefox", re.IGNORECASE),{
-    K("Super-Shift-I"): K("C-Shift-I"),   # Inspect
+    # K("Super-Shift-I"): K("C-Shift-I"),   # Inspect
+    K("Super-LM-I"): K("C-Shift-I"),   # Inspect
     K("Super-M-LEFT"): K("C-PAGE_UP"),    # Tab left
     K("Super-M-RIGHT"): K("C-PAGE_DOWN")  # Tab right
 }, 'Firefox')
+
+define_keymap(re.compile("chrome", re.IGNORECASE),{
+    # K("Super-Shift-I"): K("C-Shift-I"),   # Inspect
+    K("Super-LM-I"): K("C-Shift-I"),   # Inspect
+    K("Super-M-LEFT"): K("C-PAGE_UP"),    # Tab left
+    K("Super-M-RIGHT"): K("C-PAGE_DOWN")  # Tab right
+}, 'Chrome')
 
 define_keymap(re.compile("caja", re.IGNORECASE),{
     K("Super-M-LEFT"): K("C-PAGE_UP"),    # Tab left
     K("Super-M-RIGHT"): K("C-PAGE_DOWN")  # Tab right
 }, 'Caja')
-
