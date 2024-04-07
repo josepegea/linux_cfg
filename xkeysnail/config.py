@@ -22,6 +22,7 @@ define_keymap(None, {
         K("I"): sup.find_or_launch("youtube"),
         K("P"): sup.find_or_launch("dbeaver"),
         K("D"): sup.find_or_launch("calendar"),
+        K("E"): sup.find_or_launch("figma"),
         K("Q"): sup.find_or_launch("emacs")
     }
 }, "Apptivator")
@@ -116,6 +117,7 @@ define_keymap(re.compile("terminal", re.IGNORECASE),{
     K("Super-Q"): K("C-Shift-Q"),
 
     K("Super-T"): K("C-Shift-T"), # New tab
+    K("Super-Shift-W"): K("C-Shift-W"), # Close tab
 
     K("Super-RIGHT_BRACE"): K("C-Shift-RIGHT_BRACE"), # Zoom in
     K("Super-SLASH"): K("C-Shift-SLASH"),             # Zoom out
@@ -144,6 +146,13 @@ define_keymap(re.compile("firefox", re.IGNORECASE),{
     K("Super-M-LEFT"): K("C-PAGE_UP"),    # Tab left
     K("Super-M-RIGHT"): K("C-PAGE_DOWN")  # Tab right
 }, 'Firefox')
+
+define_keymap(re.compile("webapp", re.IGNORECASE),{
+    # K("Super-Shift-I"): K("C-Shift-I"),   # Inspect
+    K("Super-LM-I"): K("C-Shift-I"),   # Inspect
+    K("Super-M-LEFT"): K("C-Shift-TAB"),    # Tab left
+    K("Super-M-RIGHT"): K("C-TAB")  # Tab right
+}, 'Firefox-WebApps')
 
 define_keymap(re.compile("chrome", re.IGNORECASE),{
     # K("Super-Shift-I"): K("C-Shift-I"),   # Inspect
