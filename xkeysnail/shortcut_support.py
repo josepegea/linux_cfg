@@ -12,6 +12,7 @@ app_cmds = {
     "whatsapp": "gtk-launch webapp-WhatsApp0114",
     "figma": "gtk-launch webapp-Figma5770.desktop",
     "dbeaver": "gtk-launch _usr_share_dbeaver-ce_",
+    "libreoffice-calc": "gtk-launch libreoffice-calc",
     "chrome": "gtk-launch google-chrome"
 }
 

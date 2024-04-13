@@ -23,6 +23,9 @@ define_keymap(None, {
         K("P"): sup.find_or_launch("dbeaver"),
         K("D"): sup.find_or_launch("calendar"),
         K("E"): sup.find_or_launch("figma"),
+        K("X"): sup.find_or_launch("libreoffice-calc"),
+        K("W"): sup.find_or_launch("atril"),
+        K("Y"): sup.find_or_launch("yed"),
         K("Q"): sup.find_or_launch("emacs")
     }
 }, "Apptivator")
@@ -78,6 +81,7 @@ define_keymap(lambda wm_class: wm_class.casefold() not in managed_apps,{
 
     K("Super-B"): K("C-B"), # Bold
     K("Super-I"): K("C-I"), # Italic
+    K("Super-U"): K("C-U"), # Underline
 
     K("Super-T"): K("C-T"), # New tab
     K("Super-R"): K("C-R"), # Reload
