@@ -1,8 +1,10 @@
 import subprocess
+import os
 
 app_windows = {
     "calendar": "crx_kjbdgfilnfhdoflbpgamdcdgpehopbep.Google-chrome",
-    "chrome": "google-chrome.Google-chrome"
+    "chrome": "google-chrome.Google-chrome",
+    "youtube-music": "music.youtube.com.WebApp-YouTubeMusic"
 }
 
 system_windows = {
@@ -11,13 +13,17 @@ system_windows = {
 }
 
 app_cmds = {
+    "caja": "gtk-launch caja",
     "firefox": "gtk-launch firefox",
     "evolution": "gtk-launch org.gnome.Evolution",
     "jira": "gtk-launch webapp-Jira9090",
     "whatsapp": "gtk-launch webapp-WhatsApp0114",
+    "youtube-music": "gtk-launch webapp-YouTubeMusic8195.desktop",
     "figma": "gtk-launch webapp-Figma5770.desktop",
     "dbeaver": "gtk-launch _usr_share_dbeaver-ce_",
     "libreoffice-calc": "gtk-launch libreoffice-calc",
+    "yed": "gtk-launch install4j_1jxx0mo-yEd.desktop",
+    "slack": "slack",
     "chrome": "gtk-launch google-chrome"
 }
 
@@ -36,21 +42,40 @@ def find_or_launch(appname):
             return
     return find_or_launch_f
 
-# We need to execute the corresponding command as the user
-# It should work with:
-# sudo -u jes -i nohup cmd_line &> /dev/null &
-# But it has some edge cases:
-#   - emacs doesn't seem to work
-#   - caja launches another process, not connected to the normal one
-#   - Slack, being a snap, seems to act weirdly
-# So we only do it with a whitelist of applications and sanctioned commandlines.
+
+# Version of _lauch to be used when xkeysnail runs as root
+# Not needed when running as normal user
+# Remove if everything works fine
+#
+# # We need to execute the corresponding command as the user
+# # It should work with:
+# # sudo -u jes -i nohup cmd_line &> /dev/null &
+# # But it has some edge cases:
+# #   - emacs doesn't seem to work
+# #   - caja launches another process, not connected to the normal one
+# #   - Slack, being a snap, seems to act weirdly
+# # So we only do it with a whitelist of applications and sanctioned commandlines.
+# def _launch(appname):
+#     cmdline = app_cmds.get(appname)
+#     if cmdline:
+#         print("Launching %s" % appname)
+#         final_cmdline = "sudo -u jes -i -- nohup %s > /dev/null 2>&1 &" % cmdline
+#         print("Executing: %s" % final_cmdline)
+#         subprocess.run(final_cmdline, shell=True)
+#     else:
+#         print("Not launching %s" % appname)
+
 def _launch(appname):
     cmdline = app_cmds.get(appname)
     if cmdline:
         print("Launching %s" % appname)
-        final_cmdline = "sudo -u jes -i -- nohup %s > /dev/null 2>&1 &" % cmdline
+        final_cmdline = "nohup %s > /dev/null 2>&1 &" % cmdline
         print("Executing: %s" % final_cmdline)
-        subprocess.run(final_cmdline, shell=True)
+        # Adding the preexec_fn below prevents opened apps from being killed
+        # when the xkeysnail process is killed itself, by creating a new
+        # process group for the new program and ignoring signals sent to the
+        # parent shell
+        subprocess.run(final_cmdline, shell=True, preexec_fn=preexec_function)
     else:
         print("Not launching %s" % appname)
 
@@ -143,3 +168,8 @@ def hide_windows(window_ids):
 
     for window_id in window_ids:
         subprocess.run(["xdotool", "windowminimize", window_id], capture_output=False, text=False)
+
+def preexec_function():
+    # Ignore the SIGINT signal by setting the handler to the standard
+    # signal handler SIG_IGN.
+    os.setpgrp()

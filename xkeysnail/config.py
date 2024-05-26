@@ -19,7 +19,7 @@ define_keymap(None, {
         K("U"): sup.find_or_launch("whatsapp"),
         K("R"): sup.find_or_launch("jira"),
         K("C"): sup.find_or_launch("chrome"),
-        K("I"): sup.find_or_launch("youtube"),
+        K("I"): sup.find_or_launch("youtube-music"),
         K("P"): sup.find_or_launch("dbeaver"),
         K("D"): sup.find_or_launch("calendar"),
         K("E"): sup.find_or_launch("figma"),
