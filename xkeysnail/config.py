@@ -41,6 +41,11 @@ define_keymap(None, {
     K("LM-BACKSLASH"): K("RM-BACKSLASH")
 }, "AltChars")
 
+define_keymap(None, {
+    K("Super-H"): sup.hide_current_app_windows,
+    K("Super-Shift-W"): sup.close_current_window
+}, "GlobalActions")
+
 define_keymap(lambda wm_class: wm_class.casefold() not in managed_apps, {
     K("Super-RIGHT"): K("END"),
     K("Super-LEFT"): K("HOME"),
