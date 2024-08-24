@@ -141,7 +141,7 @@ def hide_current_app_windows():
 
 def close_current_window():
     """Close the topmost window"""
-    subprocess.run(["xdotool", "getactivewindow", "windowminimize"],
+    subprocess.run(["xdotool", "getactivewindow", "windowclose"],
                    capture_output=False, text=False)
 
 def current_app_windows():
